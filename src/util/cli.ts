@@ -12,7 +12,7 @@ function main() {
     }
 }
 
-function copyFileSync(source, target) {
+function copyFileSync(source:any, target:any) {
     let targetFile = target;
     if (fs.existsSync(target)) {
         if (fs.lstatSync(target).isDirectory()) {
@@ -22,7 +22,7 @@ function copyFileSync(source, target) {
     fs.writeFileSync(targetFile, fs.readFileSync(source));
 }
 
-function copyFolderRecursiveSync(source, target) {
+function copyFolderRecursiveSync(source:any, target:any) {
     let files = [];
     let targetFolder = path.join(target, path.basename(source));
     if (!fs.existsSync(targetFolder)) {
@@ -30,7 +30,7 @@ function copyFolderRecursiveSync(source, target) {
     }
     if (fs.lstatSync(source).isDirectory()) {
         files = fs.readdirSync(source);
-        files.forEach(function(file) {
+        files.forEach(function(file:any) {
             let curSource = path.join(source, file);
             if (fs.lstatSync(curSource).isDirectory()) {
                 copyFolderRecursiveSync(curSource, targetFolder);

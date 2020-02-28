@@ -1,52 +1,56 @@
-## cloud-functions-typescript-template
-cloud-functions-typescript-template is a base project of Google Cloud Functions using TypeScript. This project contains tools and configuration files that are likely to be used frequently (eg Test tool and Lint) from the beginning. Please feel free to submit Pull Request or Issue if there are recommended tools and configuration files.
+# ReadyBaby Cloud Functions 
+
+## Description
+- 적용대상: ReadyBaby Apps Script, 기타 GCP cloud functions 개발 프로젝트
+---  
+- based off of the [typescript cloud function templates](https://github.com/search?o=desc&q=typescript+cloud+function&s=stars&type=Repositories)
 
 ### Prerequisites
 npm, tsc, gcloud commands installed
 
-## (alpha) Installation
+### 기본 구성
+- node 10.x
+- typescript+gcp cloud function 개발환경
 
+### Getting Started
+- Edit .env
 ```
-$ npm install google-cloud-functions-typescript
-
-$ npx create-project your-directory
-```
-
-## Edit config in package.json
-
-```
-"config": {
-  "function_name": "Your function name, it must match the name of export function in index.ts.",
-  "region": "europe-west1 or us-east1 or us-central1 or asia-northeast1",
-  "gcp_project": "Your GCP project name"
-  "runtime": "nodejs8"
-}
+FUNCTION_NAME=helloWorld
+REGION=
+GCP_PROJECT=kidskid-19
+RUNTIME=nodejs10
 ```
 
-## Lint
-
+- Lint
 ```
 $ npm run lint
 ```
 
 ## Build
-It makes a Node.js project into `functions/src/`
-
 ```
 $ npm run build
 ```
 
 ## Test
-
 ```
 $ npm run test
 ```
 
 ## Deploy
+```
+$ npm run deploy:staging OR $ npm run deploy:prod
+```
 
-```
-$ npm run deploy --prefix functions/src/
-```
+## 참고사항
+- deploy 셋팅확인 필요. 환경변수 잘 설정해서 적용하기
+- production 업로드 전, 전체백업 필수(currentCode, DB backup등)
+
+### Todo List
+
+- [ ] Mercury
+- [x] Venus
+- [x] Earth (Orbit/Moon)
+- [x] Mars
 
 ## Contribution
 Feel free to create a pull request:) Recommended settings, bug fixes, descriptions and more!

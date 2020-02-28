@@ -1,48 +1,54 @@
 {
-    "name": "google-cloud-functions-typescript",
-    "version": "0.0.4",
-    "description": "This is a TypeScript based Cloud Functions template.",
-    "main": "index.js",
+    "name": "ReadyBaby-CloudFunction-ForAppsScript",
+    "version": "0.0.1",
+    "description": "This is a TypeScript based Cloud Functions For ReadyBaby.",
+    "main": "functions-dist/index.js",
     "config": {
-        "function_name": "helloWorld",
-        "region": "",
-        "gcp_project": "",
-        "runtime": ""
     },
     "scripts": {
-        "clean": "rimraf \"functions/*\"",
+        "clean": "rimraf \"functions-dist/*\"",
         "lint": "tslint --project tsconfig.json",
         "tsc": "tsc",
-        "cp-package": "copyfiles package.json functions/src",
+        "cp-package": "copyfiles package.json functions-dist",
         "build": "run-s clean lint tsc cp-package",
-        "test": "mocha \"functions/test/\"",
-        "deploy": "gcloud functions deploy $npm_package_config_function_name --runtime $npm_package_config_runtime --region=$npm_package_config_region --trigger-http --project $npm_package_config_gcp_project"
+        "test": "mocha --require ts-node/register tests/**/*.spec.ts",
+        "emulate": "env-cmd -x -f ./.staging.env functions-framework --source=./functions-dist --target=$FUNCTION_NAME",
+        "emulate:debug": "env-cmd -x -f ./.staging.env node --inspect --require ts-node/register node_modules/@google-cloud/functions-framework --source=./functions-dist --target=$FUNCTION_NAME",
+        "deploy:staging": "env-cmd -x -f ./.staging.env gcloud functions deploy $FUNCTION_NAME --runtime $RUNTIME --region=$REGION --trigger-http --project $GCP_PROJECT",
+        "deploy:prod": "env-cmd -x -f ./.prod.env gcloud functions deploy $FUNCTION_NAME --runtime $RUNTIME --region=$REGION --trigger-http --project $GCP_PROJECT"
     },
-    "bin": {
-        "create-project": "./cli.js"
+    "engines": {
+        "node": "10.x.x"
     },
     "keywords": [
         "cloud",
         "functions",
         "typescript"
     ],
-    "author": "\"@flatfisher <kyoheitsuda@flatfish.jp> (https://kyohei.flatfish.jp)",
+    "author": "\"@readybaby <readybaby20@gmail.com> (https://readybaby.net)",
     "license": "MIT",
     "dependencies": {},
     "devDependencies": {
+        "@google-cloud/functions-framework": "^1.4.0",
         "@types/chai": "^4.2.9",
         "@types/chai-http": "^4.2.0",
         "@types/express": "^4.17.2",
         "@types/mocha": "^7.0.1",
         "@types/moment": "^2.13.0",
         "@types/node": "^13.7.6",
+        "@typescript-eslint/eslint-plugin": "^2.20.0",
+        "@typescript-eslint/parser": "^2.20.0",
         "chai": "^4.2.0",
         "chai-http": "^4.3.0",
         "copyfiles": "^2.2.0",
         "express": "^4.17.1",
+        "jest": "^25.1.0",
         "mocha": "^7.1.0",
         "npm-run-all": "^4.1.5",
+        "prettier": "^1.19.1",
         "rimraf": "^3.0.2",
+        "ts-jest": "^25.2.1",
+        "ts-node": "^8.6.2",
         "tslint": "^6.0.0",
         "typescript": "^3.8.2"
     }

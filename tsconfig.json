@@ -15,11 +15,15 @@
         "noImplicitThis": true,
         "alwaysStrict": true,
         "preserveConstEnums": true,
-        "sourceMap": false,
+        "sourceMap": true,
         "esModuleInterop": false,
-        "outDir": "functions",
+        "outDir": "functions-dist",
         "noImplicitReturns": true
     },
+    "include": [
+        "src"
+    ],
+    "exclude": ["node_modules", "deprecated", "functions-dist", "scripts"],
     "typeRoots": [
         "node_modules/@types"
     ]

@@ -1,4 +1,4 @@
-# Contributing to cloud-functions-typescript-template
+# Contributing to ReadyBaby-CloudFunctions
 
 ## Issues
 Feel free to submit issues and enhancement requests.
